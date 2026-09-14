@@ -67,24 +67,24 @@
               {%- if block.settings.image_mobile -%}
               <div class="hidden lg:block">
                 {%- if image_stretch -%}
-                {% render 'image-object' with image: image %}
+                {% render 'image-object' with image, image: image %}
                 {%- else -%}
-                {% render 'responsive-image' with image: image %}
+                {% render 'responsive-image' with image, image: image %}
                 {%- endif -%}
               </div>
               <div class="lg:hidden">
-                {% render 'responsive-image' with image: image_mobile %}
+                {% render 'responsive-image' with image, image: image_mobile %}
               </div>
               {%- else -%}
               <div class="hidden lg:block">
                 {%- if image_stretch -%}
-                {% render 'image-object' with image: image %}
+                {% render 'image-object' with image, image: image %}
                 {%- else -%}
-                {% render 'responsive-image' with image: image %}
+                {% render 'responsive-image' with image, image: image %}
                 {%- endif -%}
               </div>
               <div class="lg:hidden">
-                {% render 'responsive-image' with image: image %}
+                {% render 'responsive-image' with image, image: image %}
               </div>
               {%- endif -%}
               {%- else -%}
@@ -732,4 +732,28 @@
     ]
   }
   {% endschema %}
-  
+  {%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'image-object' with image: image %}"
+  to: "{% render 'image-object' with image, image: image %}"
+  position: 3573..3625
+- from: "{% render 'responsive-image' with image: image %}"
+  to: "{% render 'responsive-image' with image, image: image %}"
+  position: 3671..3727
+- from: "{% render 'responsive-image' with image: image_mobile %}"
+  to: "{% render 'responsive-image' with image, image: image_mobile %}"
+  position: 3833..3896
+- from: "{% render 'image-object' with image: image %}"
+  to: "{% render 'image-object' with image, image: image %}"
+  position: 4046..4098
+- from: "{% render 'responsive-image' with image: image %}"
+  to: "{% render 'responsive-image' with image, image: image %}"
+  position: 4144..4200
+- from: "{% render 'responsive-image' with image: image %}"
+  to: "{% render 'responsive-image' with image, image: image %}"
+  position: 4306..4362
+{%- endcomment -%}

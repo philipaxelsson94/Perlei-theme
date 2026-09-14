@@ -96,7 +96,7 @@
             {%- if section.settings.social_title != blank %}
               <h2 style="text-transform: uppercase;" class="font-heading text-sm mb-4 break-words">{{ section.settings.social_title }}</h2>
             {% endif %}
-            {% render 'social-icons' with social_style: social_style, link_class: "mb-1", section_color: section_color %}
+            {% render 'social-icons' with social_style, social_style: social_style, link_class: "mb-1", section_color: section_color %}
           </div>
         </div>
       {% endif %}
@@ -416,3 +416,15 @@
   }
 
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''social-icons'' with social_style: social_style, link_class: "mb-1",
+    section_color: section_color %}'
+  to: '{% render ''social-icons'' with social_style, social_style: social_style, link_class:
+    "mb-1", section_color: section_color %}'
+  position: 4479..4602
+{% endcomment %}
