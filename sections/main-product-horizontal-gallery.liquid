@@ -28,7 +28,7 @@
             </div>
           {% when 'image' %}
             <div class="swiper-slide">
-              {% render 'responsive-image' with image: img %}
+              {% render 'responsive-image' with image, image: img %}
             </div>
         {% endcase %}
         {%- endfor -%}
@@ -46,7 +46,7 @@
               </div>
             {% when 'image' %}
               <div class="swiper-slide">
-                {% render 'responsive-image'  with image: img %}
+                {% render 'responsive-image' with image, image: img %}
               </div>
           {% endcase %}
         {%- endfor -%}
@@ -556,7 +556,7 @@
             {% if block.settings.img_1 %}
               <div class="custom_icon">
                 <div class="custom_icon_img">
-                  {% render 'responsive-image' with image: block.settings.img_1 %}
+                  {% render 'responsive-image' with image, image: block.settings.img_1 %}
                 </div>
                 <div class="custom_icon_caption">
                   {{ block.settings.img_caption_1 }}
@@ -566,7 +566,7 @@
             {% if block.settings.img_2 %}
               <div class="custom_icon">
                 <div class="custom_icon_img">
-                  {% render 'responsive-image' with image: block.settings.img_2 %}
+                  {% render 'responsive-image' with image, image: block.settings.img_2 %}
                 </div>
                 <div class="custom_icon_caption">
                   {{ block.settings.img_caption_2 }}
@@ -576,7 +576,7 @@
             {% if block.settings.img_3 %}
               <div class="custom_icon">
                 <div class="custom_icon_img">
-                  {% render 'responsive-image' with image: block.settings.img_3 | img_url: '20x20' %}
+                  {% render 'responsive-image' with image, image: block.settings.img_3, img_url: '20x20' %}
                 </div>
                 <div class="custom_icon_caption">
                   {{ block.settings.img_caption_3 }}
@@ -586,7 +586,7 @@
             {% if block.settings.img_4 %}
               <div class="custom_icon">
                 <div class="custom_icon_img">
-                  {% render 'responsive-image' with image: block.settings.img_4  %}
+                  {% render 'responsive-image' with image, image: block.settings.img_4 %}
                 </div>
                 <div class="custom_icon_caption">
                   {{ block.settings.img_caption_4 }}
@@ -1655,3 +1655,30 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with image: img %}"
+  to: "{% render 'responsive-image' with image, image: img %}"
+  position: 1234..1288
+- from: "{% render 'responsive-image'  with image: img %}"
+  to: "{% render 'responsive-image' with image, image: img %}"
+  position: 1899..1953
+- from: "{% render 'responsive-image' with image: block.settings.img_1 %}"
+  to: "{% render 'responsive-image' with image, image: block.settings.img_1 %}"
+  position: 31859..31930
+- from: "{% render 'responsive-image' with image: block.settings.img_2 %}"
+  to: "{% render 'responsive-image' with image, image: block.settings.img_2 %}"
+  position: 32271..32342
+- from: "{% render 'responsive-image' with image: block.settings.img_3 | img_url:
+    '20x20' %}"
+  to: "{% render 'responsive-image' with image, image: block.settings.img_3, img_url:
+    '20x20' %}"
+  position: 32683..32772
+- from: "{% render 'responsive-image' with image: block.settings.img_4  %}"
+  to: "{% render 'responsive-image' with image, image: block.settings.img_4 %}"
+  position: 33113..33184
+{% endcomment %}

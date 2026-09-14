@@ -26,7 +26,7 @@
       </div>
     <div class="col custom-block block-2">
       <a class="block-link" href="/products/brows-on-fleek">
-      	{% render 'responsive-image' with image: image_1 %}
+      	{% render 'responsive-image' with image, image: image_1 %}
       </a>
     </div>
   </div>
@@ -34,7 +34,7 @@
     <div class="col">
       <a class="block-link" href="/products/brow-lift-clear">
         <div class="custom-block block-3">
-          {% render 'responsive-image' with image: image_2 %}
+          {% render 'responsive-image' with image, image: image_2 %}
           <div class="block-text py-8">
             <p class="mb-4 text-base lg:text-lg">You don't want any heavy eyebrow make-up for summer! All you need is something to keep them tamed, use our killer our Brow Lift Clear to hold everything in place.</p>
             <p class="font-heading text-uppercase">
@@ -49,7 +49,7 @@
     <div class="col">
       <a class="block-link" href="/products/brow-lift-brown">
       	<div class="custom-block block-4">
-          {% render 'responsive-image' with image: image_3 %}
+          {% render 'responsive-image' with image, image: image_3 %}
           <div class="block-text py-8 lg:px-8">
             <p class="mb-4 text-base lg:text-lg">Want to add a bit of drama for the evening look,&nbsp;<br/>use our Brow Lift Brown!</p>
             <p class="font-heading text-uppercase">
@@ -380,3 +380,19 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with image: image_1 %}"
+  to: "{% render 'responsive-image' with image, image: image_1 %}"
+  position: 1127..1185
+- from: "{% render 'responsive-image' with image: image_2 %}"
+  to: "{% render 'responsive-image' with image, image: image_2 %}"
+  position: 1374..1432
+- from: "{% render 'responsive-image' with image: image_3 %}"
+  to: "{% render 'responsive-image' with image, image: image_3 %}"
+  position: 2046..2104
+{% endcomment %}

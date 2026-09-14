@@ -25,15 +25,9 @@
       {% endif %}
 
       {% if height == 'full_screen' or height == 'full_height' %}
-        {% render 'image-object' with
-          image: image,
-          focal_point: image_focal_point
-        %}
+        {% render 'image-object' with image, image: image, focal_point: image_focal_point %}
       {% else %}
-        {% render 'responsive-image' with
-          image: image,
-          max_height: max_height
-        %}
+        {% render 'responsive-image' with image, image: image, max_height: max_height %}
       {% endif %}
 
       {% if image_mobile != blank %}
@@ -44,15 +38,9 @@
       <div class="lg:hidden">
         {% assign image = image_mobile %}
         {% if height == 'full_screen' or height == 'full_height' %}
-          {% render 'image-object' with
-            image: image,
-            focal_point: image_focal_point
-          %}
+          {% render 'image-object' with image, image: image, focal_point: image_focal_point %}
         {% else %}
-          {% render 'responsive-image' with
-            image: image,
-        	max_height: max_height
-          %}
+          {% render 'responsive-image' with image, image: image, max_height: max_height %}
         {% endif %}
       </div>
       {% endif %}
@@ -98,3 +86,39 @@
   </div>
 </div>
 {% endif %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'image-object' with
+              image: image,
+              focal_point: image_focal_point
+            %}
+  to: "{% render 'image-object' with image, image: image, focal_point: image_focal_point
+    %}"
+  position: 1149..1233
+- from: |-
+    {% render 'responsive-image' with
+              image: image,
+              max_height: max_height
+            %}
+  to: "{% render 'responsive-image' with image, image: image, max_height: max_height
+    %}"
+  position: 1259..1339
+- from: |-
+    {% render 'image-object' with
+                image: image,
+                focal_point: image_focal_point
+              %}
+  to: "{% render 'image-object' with image, image: image, focal_point: image_focal_point
+    %}"
+  position: 1615..1699
+- from: "{% render 'responsive-image' with\n            image: image,\n        \tmax_height:
+    max_height\n          %}"
+  to: "{% render 'responsive-image' with image, image: image, max_height: max_height
+    %}"
+  position: 1729..1809
+{% endcomment %}

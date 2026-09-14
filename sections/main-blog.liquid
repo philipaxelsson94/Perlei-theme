@@ -101,11 +101,7 @@
         <li class="relative grid lg:grid-cols-12 grid-flow-row-dense bg-border gap-gutter overflow-hidden {% unless forloop.first %}border-t-grid border-grid-color{% endunless %}">
           {%- if article.image != blank -%}
             <div class="{{ image_width_desktop }} relative full-h bg-{{ section_color }}-background {% unless settings.fill_image_to_border_edge %}p-2 lg:p-4 flex items-center{% endunless %}">
-              {% render 'image-crop' with
-                image: article.image,
-                ratio: ratio,
-                crop: section.settings.crop
-              %}
+              {% render 'image-crop' with image, image: article.image, ratio: ratio, crop: section.settings.crop %}
             </div>
           {%- endif -%}
           <div class="{{ content_width_desktop }} bg-{{ section_color }}-background text-{{ section_color }}-text section-x-padding py-theme lg:flex {{ section.settings.feature_content_position }}  {% if article.image == blank %}col-span-2{% endif %}  overflow-hidden">
@@ -181,11 +177,7 @@
               {%- if article.image != blank -%}
                 <div class="full-h bg-{{ section_color }}-background {% if settings.fill_image_to_border_edge %}border-b-grid border-grid-color{% else %}pt-2 px-2 lg:pt-4 lg:px-4{% endif %}">
                   <div class="relative">
-                    {% render 'image-crop' with
-                      image: article.image,
-                      ratio: ratio,
-                      crop: section.settings.crop
-                    %}
+                    {% render 'image-crop' with image, image: article.image, ratio: ratio, crop: section.settings.crop %}
                   </div>
                 </div>
               {%- endif -%}
@@ -256,7 +248,7 @@
   {% endcase %}
 
   {% if paginate.pages > 1 %}
-    {% render 'pagination' with paginate: paginate, section_color: section_color %}
+    {% render 'pagination' with paginate, paginate: paginate, section_color: section_color %}
   {% endif %}
 </section>
 {% endpaginate %}
@@ -435,3 +427,33 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'image-crop' with
+                    image: article.image,
+                    ratio: ratio,
+                    crop: section.settings.crop
+                  %}
+  to: "{% render 'image-crop' with image, image: article.image, ratio: ratio, crop:
+    section.settings.crop %}"
+  position: 5412..5513
+- from: |-
+    {% render 'image-crop' with
+                          image: article.image,
+                          ratio: ratio,
+                          crop: section.settings.crop
+                        %}
+  to: "{% render 'image-crop' with image, image: article.image, ratio: ratio, crop:
+    section.settings.crop %}"
+  position: 9419..9520
+- from: "{% render 'pagination' with paginate: paginate, section_color: section_color
+    %}"
+  to: "{% render 'pagination' with paginate, paginate: paginate, section_color: section_color
+    %}"
+  position: 12757..12846
+{% endcomment %}

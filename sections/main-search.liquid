@@ -84,10 +84,7 @@
                 <div class="relative section-x-padding py-theme bg-primary-background text-primary-text flex justify-star items-center">
                   {%- if article.image != blank -%}
                   <div class="w-16 mr-4">
-                    {% render 'image-crop' with
-                      image: article.image,
-                      ratio: 1
-                    %}
+                    {% render 'image-crop' with image, image: article.image, ratio: 1 %}
                   </div>
                   {%- endif -%}
                   <div>
@@ -129,7 +126,7 @@
   </div>
 
   {% if paginate.pages > 1 %}
-    {% render 'pagination' with paginate: paginate, section_color: 'primary' %}
+    {% render 'pagination' with paginate, paginate: paginate, section_color: 'primary' %}
   {% endif %}
 
 </div>
@@ -140,3 +137,22 @@
     "name": "Search results"
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'image-crop' with
+                          image: article.image,
+                          ratio: 1
+                        %}
+  to: "{% render 'image-crop' with image, image: article.image, ratio: 1 %}"
+  position: 5681..5749
+- from: "{% render 'pagination' with paginate: paginate, section_color: 'primary'
+    %}"
+  to: "{% render 'pagination' with paginate, paginate: paginate, section_color: 'primary'
+    %}"
+  position: 7681..7766
+{% endcomment %}
